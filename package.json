@@ -1,18 +1,11 @@
 {
-  "name": "@tuya/tuya-connector-nodejs",
+  "name": "@Madeezi/tuya-connector",
   "version": "2.1.2",
   "description": "tuya openapi nodejs sdk",
   "main": "lib/index.js",
   "license": "MIT",
   "types": "lib/index.d.ts",
-  "keywords": [
-    "sdk",
-    "tuya",
-    "axios",
-    "promise",
-    "openapi",
-    "connector"
-  ],
+  "keywords": ["sdk", "tuya", "axios", "promise", "openapi", "connector"],
   "scripts": {
     "prepare": "husky install",
     "build": "rm -rf ./lib && tsc",
@@ -27,7 +20,7 @@
     "release:major": "standard-version -r major"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org",
+    "@Madeezi:registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "repository": {
@@ -53,14 +46,9 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.2.2"
   },
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
+    "moduleFileExtensions": ["ts", "js"],
     "collectCoverage": false,
     "rootDir": ".",
     "transform": {
@@ -84,8 +72,6 @@
     }
   },
   "lint-staged": {
-    "**/!(lib)/*": [
-      "echo need to check AK/SK"
-    ]
+    "**/!(lib)/*": ["echo need to check AK/SK"]
   }
 }
