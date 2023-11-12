@@ -1,8 +1,8 @@
-import { TuyaOpenApiClient } from '../../core/client';
-import { TuyaResponse } from '../../interfaces';
+import { TuyaOpenApiClient } from "../../core/client";
+import { TuyaResponse } from "../../interfaces";
 
 interface DeviceFunctionServiceCategoriesParam {
-  category: 'kg' | 'cz' | 'dj' | string;
+  category: "kg" | "cz" | "dj" | string;
 }
 
 interface DeviceFunctionServiceCategoriesResult {
@@ -29,7 +29,6 @@ interface DeviceFunctionServiceDeviceResult {
     name: string;
     desc: string;
   }[];
-
 }
 
 interface DeviceFunctionServiceSpecificationParam {
@@ -56,9 +55,7 @@ interface DeviceFunctionServiceCommandParam {
     code: string;
     value: string | boolean | number;
   }[];
-
 }
-
 
 class TuyaOpenApiDeviceFunctionService {
   private client: TuyaOpenApiClient;
@@ -67,41 +64,48 @@ class TuyaOpenApiDeviceFunctionService {
     this.client = client;
   }
 
-  async categories(param: DeviceFunctionServiceCategoriesParam): Promise<TuyaResponse<DeviceFunctionServiceCategoriesResult>> {
-    const res = await this.client.request<DeviceFunctionServiceCategoriesResult>({
-      path: `/v1.0/iot-03/categories/${param.category}/functions`,
-      method: 'GET',
-    });
+  async categories(
+    param: DeviceFunctionServiceCategoriesParam,
+  ): Promise<TuyaResponse<DeviceFunctionServiceCategoriesResult>> {
+    const res =
+      await this.client.request<DeviceFunctionServiceCategoriesResult>({
+        path: `/v1.0/iot-03/categories/${param.category}/functions`,
+        method: "GET",
+      });
     return res.data;
   }
-  async devices(param: DeviceFunctionServiceDeviceParam): Promise<TuyaResponse<DeviceFunctionServiceDeviceResult>> {
+  async devices(
+    param: DeviceFunctionServiceDeviceParam,
+  ): Promise<TuyaResponse<DeviceFunctionServiceDeviceResult>> {
     const res = await this.client.request<DeviceFunctionServiceDeviceResult>({
       path: `/v1.0/iot-03/devices/${param.device_id}/functions`,
-      method: 'GET',
-    });
-    return res.data;
-
-  }
-
-  async specification(param: DeviceFunctionServiceSpecificationParam): Promise<TuyaResponse<DeviceFunctionServiceSpecificationResult>> {
-    const res = await this.client.request<DeviceFunctionServiceSpecificationResult>({
-      path: `/v1.0/iot-03/devices/${param.device_id}/specification`,
-      method: 'GET',
+      method: "GET",
     });
     return res.data;
   }
 
-  async command(param: DeviceFunctionServiceCommandParam): Promise<TuyaResponse<boolean>> {
+  async specification(
+    param: DeviceFunctionServiceSpecificationParam,
+  ): Promise<TuyaResponse<DeviceFunctionServiceSpecificationResult>> {
+    const res =
+      await this.client.request<DeviceFunctionServiceSpecificationResult>({
+        path: `/v1.0/iot-03/devices/${param.device_id}/specification`,
+        method: "GET",
+      });
+    return res.data;
+  }
+
+  async command(
+    param: DeviceFunctionServiceCommandParam,
+  ): Promise<TuyaResponse<boolean>> {
     const res = await this.client.request<boolean>({
       path: `/v1.0/iot-03/devices/${param.device_id}/commands`,
-      method: 'GET',
+      method: "POST",
+      body: { commands: param.commands },
     });
     return res.data;
   }
-
 }
 
-export {
-  TuyaOpenApiDeviceFunctionService
-}
+export { TuyaOpenApiDeviceFunctionService };
 export default TuyaOpenApiDeviceFunctionService;
