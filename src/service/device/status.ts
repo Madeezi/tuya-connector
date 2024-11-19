@@ -30,7 +30,7 @@ class TuyaOpenApiDeviceStatusService {
   }
 
   async status(
-    param: DeviceStatusServiceStatusParam
+    param: DeviceStatusServiceStatusParam,
   ): Promise<TuyaResponse<DeviceStatusServiceStatusResult[]>> {
     const res = await this.client.request<DeviceStatusServiceStatusResult[]>({
       path: `/v1.0/iot-03/devices/${param.device_id}/status`,
@@ -40,7 +40,7 @@ class TuyaOpenApiDeviceStatusService {
   }
 
   async statusList(
-    param: DeviceStatusServiceStatusListParam
+    param: DeviceStatusServiceStatusListParam,
   ): Promise<TuyaResponse<DeviceStatusServiceStatusListResult>> {
     const res = await this.client.request<DeviceStatusServiceStatusListResult>({
       path: `/v1.0/iot-03/devices/status`,
@@ -53,3 +53,7 @@ class TuyaOpenApiDeviceStatusService {
 
 export { TuyaOpenApiDeviceStatusService };
 export default TuyaOpenApiDeviceStatusService;
+export type {
+  DeviceStatusServiceStatusResult,
+  DeviceStatusServiceStatusListResult,
+};
